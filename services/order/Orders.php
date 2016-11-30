@@ -17,6 +17,7 @@ class Orders {
 
     //构造方法
     public function __construct($type='db') {
+        global $db;
         $inventory = null;
         //使用innerdb验证库存或redis验证库存
         switch($type) {
@@ -27,7 +28,7 @@ class Orders {
                 $inventory = new Inventory();
         }
         $this->_inventory = $inventory;
-        $this->_db = new \Slim\PDO\Database(DSN, USR, PWD);
+        $this->_db = $db;
     }
 
     /**
@@ -37,7 +38,7 @@ class Orders {
      */
     public function add(array $params) {
         //验证库存并扣减库存
-        $result = $this->_inventory->check($params);
+        $result = $this->_inventory->sub($params);
         if ($result) {
             $order_num = implode(NULL, array_map('ord', str_split(substr(uniqid(), 2, 13), 1)));
             $insertStatement = $this->_db->insert(['order_num', 'goods_id', 'goods_name', 'create_time'])

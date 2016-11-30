@@ -15,6 +15,6 @@ interface Inventory {
      * @param array $parmas
      * @return bool
      */
-    public function check(array $parmas);
+    public function sub(array $parmas);
 
 }

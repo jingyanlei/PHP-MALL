@@ -10,3 +10,5 @@ spl_autoload_register(function($class) {
         require_once($file);
     }
 });
+
+$db = new \Slim\PDO\Database(DSN, USR, PWD);

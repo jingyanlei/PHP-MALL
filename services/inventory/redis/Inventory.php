@@ -15,7 +15,7 @@ class Inventory implements \interfaces\Inventory {
      * @param array $parmas
      * @return bool
      */
-    public function check(array $parmas) {
+    public function sub(array $parmas) {
         return true;
     }
 

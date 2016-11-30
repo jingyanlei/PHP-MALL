@@ -13,7 +13,8 @@ class Goods {
     private $_db;
 
     public function __construct() {
-        $this->_db = new \Slim\PDO\Database(DSN, USR, PWD);
+        global $db;
+        $this->_db = $db;
     }
 
     /**
@@ -26,6 +27,7 @@ class Goods {
     }
 
     /**
+     *  查询库存
      * @param array $parmas
      * @return int
      */
@@ -33,7 +35,7 @@ class Goods {
         $selectStatement = $this->_db->select(['inventory'])
             ->from('goods')
             ->where('id', '=', $parmas['goods_id'])
-            ->where('inventory', '>', $parmas['num'], 'AND');
+            ->where('inventory', '>=', $parmas['num'], 'AND');
         $stmt = $selectStatement->execute();
         return $stmt->fetch();
     }
@@ -44,6 +46,7 @@ class Goods {
      * @return bool
      */
     public function subInventory(array $params) {
+//        $sql = 'UPDATE goods SET inventory = inventory - '.$params['num'].' WHERE id = '.$params['goods_id'].' AND inventory >= '.$params['num'].'';
         $sql = 'UPDATE goods SET inventory = inventory - '.$params['num'].' WHERE id = '.$params['goods_id'].'';
         $query = $this->_db->query($sql);
         if ($query !== false && $query->rowCount() > 0) {
