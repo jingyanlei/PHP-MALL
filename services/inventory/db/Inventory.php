@@ -28,7 +28,7 @@ class Inventory implements \interfaces\Inventory {
         $this->_db->beginTransaction();
         try {
             $data = $goods->getInventory($params);
-            sleep(2); //停2秒,方便测试出问题
+//            sleep(2); //停2秒,方便测试出问题
             $params['version'] = $data['version'];
             //查询
             if (!empty($data) && is_array($data)) {

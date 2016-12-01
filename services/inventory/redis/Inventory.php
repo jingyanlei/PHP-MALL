@@ -24,7 +24,7 @@ class Inventory implements \interfaces\Inventory {
         ]);
         $key = 'goods_'.$parmas['goods_id'];
         //库存不存在设置存存
-        sleep(2); //停2秒,方便测试出问题
+//        sleep(2); //停2秒,方便测试出问题
         if ($redis_client->exists($key) == '0') {
             $goods = new Goods();
             $data = $goods->getInventory($parmas);
