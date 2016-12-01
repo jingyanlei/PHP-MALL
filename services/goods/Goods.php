@@ -32,7 +32,7 @@ class Goods {
      * @return int
      */
     public function getInventory(array $parmas) {
-        $selectStatement = $this->_db->select(['inventory'])
+        $selectStatement = $this->_db->select(['inventory', 'version'])
             ->from('goods')
             ->where('id', '=', $parmas['goods_id'])
             ->where('inventory', '>=', $parmas['num'], 'AND');
@@ -47,7 +47,7 @@ class Goods {
      */
     public function subInventory(array $params) {
 //        $sql = 'UPDATE goods SET inventory = inventory - '.$params['num'].' WHERE id = '.$params['goods_id'].' AND inventory >= '.$params['num'].'';
-        $sql = 'UPDATE goods SET inventory = inventory - '.$params['num'].' WHERE id = '.$params['goods_id'].'';
+        $sql = 'UPDATE goods SET inventory = inventory - '.$params['num'].', version = version + 1 WHERE id = '.$params['goods_id'].' AND version = '.$params['version'].'';
         $query = $this->_db->query($sql);
         if ($query !== false && $query->rowCount() > 0) {
             return true;

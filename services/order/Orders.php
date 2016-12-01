@@ -1,7 +1,5 @@
 <?php
 namespace services\order;
-use services\goods\Goods;
-use services\inventory\db\Inventory;
 
 /**
  * Created by PhpStorm.
@@ -16,16 +14,19 @@ class Orders {
     private $_db;
 
     //构造方法
-    public function __construct($type='db') {
+    public function __construct() {
         global $db;
         $inventory = null;
         //使用innerdb验证库存或redis验证库存
-        switch($type) {
+        switch(INVENTORY_TYPE) {
             case 'redis':
-                $inventory = new services\inventory\redis\Inventory();
+                $inventory = new \services\inventory\redis\Inventory();
+                break;
+            case 'db2':
+                $inventory = new \services\inventory\db2\Inventory();
                 break;
             default:
-                $inventory = new Inventory();
+                $inventory = new \services\inventory\db\Inventory();
         }
         $this->_inventory = $inventory;
         $this->_db = $db;

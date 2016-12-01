@@ -11,12 +11,20 @@ class ComposerStaticInitf2677cf14badecdcecb06ac3f7558567
         array (
             'Slim\\PDO\\' => 9,
         ),
+        'P' => 
+        array (
+            'Predis\\' => 7,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Slim\\PDO\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/pdo/src/PDO',
+        ),
+        'Predis\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/predis/predis/src',
         ),
     );
 

@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Slim\\PDO\\' => array($vendorDir . '/slim/pdo/src/PDO'),
+    'Predis\\' => array($vendorDir . '/predis/predis/src'),
 );
