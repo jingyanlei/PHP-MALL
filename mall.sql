@@ -11,7 +11,7 @@
  Target Server Version : 50716
  File Encoding         : utf-8
 
- Date: 11/30/2016 18:35:22 PM
+ Date: 12/01/2016 15:46:12 PM
 */
 
 SET NAMES utf8;
@@ -25,6 +25,7 @@ CREATE TABLE `goods` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `goods_name` varchar(255) NOT NULL DEFAULT '' COMMENT '商品名称',
   `inventory` int(10) NOT NULL COMMENT '库存',
+  `version` int(11) DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `inventory` (`inventory`),
   KEY `aa` (`id`,`inventory`)
@@ -34,7 +35,7 @@ CREATE TABLE `goods` (
 --  Records of `goods`
 -- ----------------------------
 BEGIN;
-INSERT INTO `goods` VALUES ('1', '测试商品', '1');
+INSERT INTO `goods` VALUES ('1', '测试商品', '1', '1');
 COMMIT;
 
 -- ----------------------------
@@ -48,6 +49,6 @@ CREATE TABLE `orders` (
   `goods_name` varchar(255) NOT NULL DEFAULT '' COMMENT '商品名称',
   `create_time` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
